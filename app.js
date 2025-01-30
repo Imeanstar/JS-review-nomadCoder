@@ -9,4 +9,5 @@ function onLoginSubmit(event){
     console.log(loginInput.value);
 }
 
+
 loginForm.addEventListener("submit", onLoginSubmit);
