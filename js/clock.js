@@ -5,7 +5,17 @@ function getClock(){
     // const hour = date.getHours();
     // const minute = date.getMinutes();
     // console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`); 
-    clock.innerText = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    
+    if(date.getSeconds() < 10){
+        console.log(0);
+        clock.innerText = `${date.getHours()}:${date.getMinutes()}:0${date.getSeconds()}`;
+    }
+    else{
+        console.log(11);
+        clock.innerText = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    }
+
+    
 }
 
 getClock();
