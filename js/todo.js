@@ -2,14 +2,30 @@ const todoForm = document.getElementById("todo-form");
 const todoInput = todoForm.querySelector("input");
 const todoList = document.getElementById("todo-list");
 
-function paintTodo(newTodo){
+const todos = [];
 
+function deleteTodo(event){
+    const li = event.target.parentElement;
+    li.remove();
+}
+
+function paintTodo(newTodo){
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    span.innerText = newTodo;
+    const button = document.createElement("button");
+    button.innerText = "❌";
+    button.addEventListener("click", deleteTodo);
+    li.appendChild(span);
+    li.appendChild(button);
+    todoList.appendChild(li);
 }
 
 function handleToDoSubmit(event){
     event.preventDefault();
-    const newTodo = toDoInput.value;
-    toDoInput.value = "";
+    const newTodo = todoInput.value;
+    todoInput.value = "";
+    todos.push(newTodo);
     paintTodo(newTodo);
 }
 
