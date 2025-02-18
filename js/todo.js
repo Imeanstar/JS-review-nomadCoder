@@ -12,13 +12,30 @@ function saveTodos(){
 
 function deleteTodo(event){
     const li = event.target.parentElement;
+    const liId = li.id;
+
+
+    for(let i = 0 ; i < todos.length ; i++){
+        if(todos[i].id == liId){
+            todos = todos.filter((e) => e !== todos[i]);
+            console.log(todos);
+            console.log(todos[i].id);
+            console.log(liId);
+            if(todos[i].id == liId){
+                console.log("they are same");
+            }
+        }
+    }
+    saveTodos();
+
     li.remove();
 }
 
 function paintTodo(newTodo){
     const li = document.createElement("li");
+    li.id = newTodo.id;
     const span = document.createElement("span");
-    span.innerText = newTodo;
+    span.innerText = newTodo.text;
     const button = document.createElement("button");
     button.innerText = "❌";
     button.addEventListener("click", deleteTodo);
@@ -31,9 +48,13 @@ function handleToDoSubmit(event){
     event.preventDefault();
     const newTodo = todoInput.value;
     todoInput.value = "";
-    todos.push(newTodo);
-    saveTodos(newTodo);
-    paintTodo(newTodo);
+    const newTodoObject = {
+        id : Date.now(),
+        text : newTodo,
+    }
+    todos.push(newTodoObject);
+    saveTodos();
+    paintTodo(newTodoObject);
 }
 
 todoForm.addEventListener("submit", handleToDoSubmit);
