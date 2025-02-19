@@ -18,12 +18,6 @@ function deleteTodo(event){
     for(let i = 0 ; i < todos.length ; i++){
         if(todos[i].id == liId){
             todos = todos.filter((e) => e !== todos[i]);
-            console.log(todos);
-            console.log(todos[i].id);
-            console.log(liId);
-            if(todos[i].id == liId){
-                console.log("they are same");
-            }
         }
     }
     saveTodos();
